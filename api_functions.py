@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-import pyarrow as pa
-import pyarrow.parquet as pq
 
 df_reviews= pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_reviews_l.parquet")
 df_genre_ranking = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_genre_ranking.parquet")
