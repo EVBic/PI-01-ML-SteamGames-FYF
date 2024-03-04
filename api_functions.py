@@ -22,7 +22,8 @@ def presentation():
             <title>API Steam Find Your Fun</title>
             <style>
                 body {
-                    font-family: Arial, sans-serif;
+                    background: url(https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg?raw=true)
+                    font-family: Georgia, sans-serif;
                     padding: 20px;
                 }
                 h1 {
@@ -52,7 +53,7 @@ def presentation():
         <body>
             <h1>FIND YOUR FUN</h1>
             <h1>Steam Video Game Queries API</h1>
-            
+            https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg
             <p>Welcome to the Steam API, where you can make various queries related to the gaming platform.</p>
             <p><strong>INSTRUCTIONS:</strong></p>
             <p>Click the button below to interact with the API:</p>

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import api_functions as afdef
 import importlib
