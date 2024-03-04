@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import api_functions as afdef
@@ -21,7 +22,7 @@ def home():
     '''
     return afdef.presentation()
 
-@app.get(path = '/developer', response_class=JSONResponse,
+@app.get(path = '/developer', 
           description = """ <font color="white">
                         1. Click on "Try it out".<br>
                         2. Enter the developer's name in the box below.<br>
@@ -47,7 +48,7 @@ def developer(developer: str = Query(...,
          tags=["General Inquiries"])
 
 def userdata(user_id: str = Query(..., 
-                                description="Identificador único del usuario", 
+                                description="user_id", 
                                 example="js41637")):
         
     return afdef.userdata(user_id)
@@ -67,19 +68,24 @@ def genre(genero: str = Query(...,
     return af.genre(genero)
 """
 
-@app.get(path = '/userForGenre',
-          description = """ <font color="blue">
+@app.get(path = '/UserForGenre/{genre}', 
+         description = """ <font color="green">
                         1. Click on "Try it out".<br>
-                        2. Enter the gender in the box below.<br>
-                        3. Scroll to "Resposes" to see Top 5 users with the most hours of play in the given genre, with their URL and user_id.
+                        2. Enter the genre in the box below.<br>
+                        3. Scroll to "Responses" to see the user with the most playtime for the given genre and their playtime by year.
                         </font>
                         """,
          tags=["General Inquiries"])
-def userForGenre(genre: str = Query(..., 
-                            description="Video Game Genre", 
-                            example='Indie')):
-    return afdef.userForGenre(genre)
+def get_UserForGenre(genre: str = Query(..., 
+                                        description="Video Game Genre", 
+                                        example='Indie')):
+    return afdef.UserForGenre(genre)
 
+
+
+@app.get("/dev_reviews_analysis/{developer}")
+def get_dev_reviews_analysis(developer: str):
+    return afdef.dev_reviews_analysis(developer)
 
 @app.get('/game_recommendation',
          description=""" <font color="pink">

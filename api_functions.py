@@ -22,7 +22,8 @@ def presentation():
             <title>API Steam Find Your Fun</title>
             <style>
                 body {
-                    
+                    background: url("https://app.gemoo.com/share/image-annotation/623411102147424256?codeId=M0BgaB8r7V7ZZ&origin=imageurlgenerator&card=623411100083826688");
+                    background: url("https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg");
                     font-family: Georgia, sans-serif;
                     padding: 20px;
                 }
@@ -53,7 +54,7 @@ def presentation():
         <body>
             <h1>FIND YOUR FUN</h1>
             <h1>Steam Video Game Queries API</h1>
-            background: url("https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg");
+            
             <p>Welcome to the Steam API, where you can make various queries related to the gaming platform.</p>
             <p><strong>INSTRUCTIONS:</strong></p>
             <p>Click the button below to interact with the API:</p>
@@ -110,24 +111,40 @@ def userdata(user_id):
         'total_items': count_items.astype(int)
     }
 
-def userForGenre(genre):
+def UserForGenre(genre: str) -> dict:
+    # Filter the DataFrame for the specific genre
+    genre_df = df_playtime[df_playtime['genres'] == genre]
     
-    # Filter the dataframe by the genre of interest
-    data_by_genre = df_playtime[df_playtime['genres'] == genre]
-    # Group the filtered dataframe by user and sum the number of hours
-    top_users = data_by_genre.groupby(['user_url', 'user_id'])['playtime_hours'].sum().nlargest(5).reset_index()
+    # Convert playtime from minutes to hours
+    genre_df['playtime_forever'] = genre_df['playtime_forever'] / 60
     
-    # An empty dictionary is made to store the needed data
-    top_users_dict = {}
-    for index, row in top_users.iterrows():
-        # User info goes through each row of the top 5 and saves it in the dictionary
-        user_info = {
-            'user_id': row['user_id'],
-            'user_url': row['user_url']
-        }
-        top_users_dict[index + 1] = user_info
+    # Group by user_id and sum the playtime_forever
+    user_playtime = genre_df.groupby('user_id')['playtime_forever'].sum()
     
-    return top_users_dict
+    # Get the user with the most playtime
+    top_user = user_playtime.idxmax()
+    
+    # Filter the DataFrame for the top user and the specific genre
+    top_user_genre_df = genre_df[genre_df['user_id'] == top_user]
+    
+    # Group by release_year and sum the playtime_forever
+    playtime_by_year = top_user_genre_df.groupby('release_year')['playtime_forever'].sum()
+    
+    # Prepare the playtime list
+    playtime_list = []
+    for year, playtime in playtime_by_year.items():
+        try:
+            # Try to convert the year to an integer
+            year_int = int(year)
+            playtime_list.append({"Year": year_int, "Hours": playtime})
+        except ValueError:
+            # Skip rows where year is not a numeric value
+            continue
+    
+    return {
+        "User with most playtime for Genre {}".format(genre): top_user,
+        "Playtime": playtime_list
+    }
 
 def best_developer_year(year: int):
     # Replace non-numeric 'release_year' values with NaN
@@ -142,7 +159,11 @@ def best_developer_year(year: int):
     # Get the top 3 developers
     top_developers = df_grouped.nlargest(3).index.tolist()
     
-    return {"Top 3 Developers": top_developers}
+    # Prepare the result in the desired format
+    result = [{"Rank {}".format(i+1): dev} for i, dev in enumerate(top_developers)]
+    
+    return result
+
 
 def dev_reviews_analysis(developer):
     # Filter the reviews for the specific developer
