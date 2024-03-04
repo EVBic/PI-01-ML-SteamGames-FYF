@@ -22,7 +22,7 @@ def presentation():
             <title>API Steam Find Your Fun</title>
             <style>
                 body {
-                    background: url("C:\Users\m_evi\OneDrive\Desktop\FastAPI\Datasets\Images\FYF_Main.jpeg");
+                    background: url("https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg");
                     font-family: Georgia, sans-serif;
                     padding: 20px;
                 }
