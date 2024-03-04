@@ -136,13 +136,15 @@ def UserForGenre(genre: str) -> dict:
         try:
             # Try to convert the year to an integer
             year_int = int(year)
-            playtime_list.append({"Year": year_int, "Hours": playtime})
+            # Convert playtime to a native Python float
+            playtime_float = float(playtime)
+            playtime_list.append({"Year": year_int, "Hours": playtime_float})
         except ValueError:
             # Skip rows where year is not a numeric value
             continue
     
     return {
-        "User with most playtime for Genre {}".format(genre): top_user,
+        "User with most playtime for Genre {}".format(genre): str(top_user),
         "Playtime": playtime_list
     }
 

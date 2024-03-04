@@ -23,7 +23,7 @@ def home():
     return afdef.presentation()
 
 @app.get(path = '/developer', 
-          description = """ <font color="white">
+          description = """ <font color="black">
                         1. Click on "Try it out".<br>
                         2. Enter the developer's name in the box below.<br>
                         3. Scroll to "Resposes" to see the number of items and percentage of Free content per year from that developer.
@@ -38,7 +38,7 @@ def developer(developer: str = Query(...,
 
 
 @app.get(path = '/userdata',
-          description = """ <font color="blue">
+          description = """ <font color="black">
                         INSTRUCTIONS<br>
                         1. Click on "Try it out".<br>
                         2. Enter the user_id in the box below.<br>
@@ -53,42 +53,35 @@ def userdata(user_id: str = Query(...,
         
     return afdef.userdata(user_id)
     
-    
-"""@app.get(path = '/genre',
-          description =  <font color="blue">
-                        1. Click on "Try it out".<br>
-                        2. Enter the genre of the game in the box below. <br>
-                        3. Scroll to "Resposes" to see where you are in the ranking.
-                        </font>
-                       
-         tags=["General Inquiries"])
-def genre(genero: str = Query(..., 
-                            description="Video Game Genre", 
-                            example='Simulation')):
-    return af.genre(genero)
-"""
 
-@app.get(path = '/UserForGenre/{genre}', 
-         description = """ <font color="green">
+@app.get("/UserForGenre/{genre}", 
+         description = """ <font color="black">
                         1. Click on "Try it out".<br>
                         2. Enter the genre in the box below.<br>
                         3. Scroll to "Responses" to see the user with the most playtime for the given genre and their playtime by year.
                         </font>
                         """,
          tags=["General Inquiries"])
-def get_UserForGenre(genre: str = Query(..., 
-                                        description="Video Game Genre", 
-                                        example='Indie')):
+def get_UserForGenre(genre: str):
     return afdef.UserForGenre(genre)
 
-
-
-@app.get("/dev_reviews_analysis/{developer}")
-def get_dev_reviews_analysis(developer: str):
+@app.get('/dev_reviews_analysis',
+         description="""<font color="black">
+                    INSTRUCTIONS<br>
+                    1. Click on "Try it out".<br>
+                    2. Enter the year in the box below.<br>
+                    3. Scroll down to "Responses" to view the number of user review records categorized with sentiment analysis.
+                    </font>
+                    """,
+         tags=["General Queries"])
+def dev_reviews_analysis(year: str = Query(..., 
+                                         description="Returns a dictionary with the developer's name", 
+                                         example="Trion Worlds, Inc.")):
     return afdef.dev_reviews_analysis(developer)
 
+
 @app.get('/game_recommendation',
-         description=""" <font color="pink">
+         description=""" <font color="black">
                     INSTRUCTIONS<br>
                     1. Click on "Try it out".<br>
                     2. Enter the name of a game in box below.<br>
