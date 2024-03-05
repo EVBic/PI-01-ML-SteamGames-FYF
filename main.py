@@ -77,7 +77,7 @@ def UserForGenre(genre: str):
          tags=["General Inquiries"])
 def best_developer_year(year: int = Query(..., 
                                               description="Year to filter the information", 
-                                              example=2012)):
+                                              example= "2012")):
     return afdef.best_developer_year(year)
 
 @app.get('/dev_reviews_analysis',
