@@ -15,15 +15,15 @@ app = FastAPI()
 
 def home():
     '''
-    Home Page Displaying a Presentation
+    Home Page Presentation
 
     Returns:
-    HTMLResponse: HTML response displaying the presentation.
+    Hellow Gamer!!
     '''
     return afdef.presentation()
 
 @app.get(path = '/developer', 
-          description = """ <font color="black">
+          description = """ <font color="purple">
                         1. Click on "Try it out".<br>
                         2. Enter the developer's name in the box below.<br>
                         3. Scroll to "Resposes" to see the number of items and percentage of Free content per year from that developer.
@@ -38,7 +38,7 @@ def developer(developer: str = Query(...,
 
 
 @app.get(path = '/userdata',
-          description = """ <font color="black">
+          description = """ <font color="purple">
                         INSTRUCTIONS<br>
                         1. Click on "Try it out".<br>
                         2. Enter the user_id in the box below.<br>
@@ -55,7 +55,7 @@ def userdata(user_id: str = Query(...,
     
 
 @app.get("/UserForGenre/{genre}", 
-         description = """ <font color="black">
+         description = """ <font color="purple">
                         1. Click on "Try it out".<br>
                         2. Enter the genre in the box below.<br>
                         3. Scroll to "Responses" to see the user with the most playtime for the given genre and their playtime by year.
@@ -67,7 +67,7 @@ def UserForGenre(genre: str):
 
 
 @app.get("/best_developer_year/{year}", 
-         description = """ <font color="blue">
+         description = """ <font color="purple">
                         INSTRUCTIONS<br>
                         1. Click on "Try it out".<br>
                         2. Enter the year in the box below.<br>
@@ -75,11 +75,11 @@ def UserForGenre(genre: str):
                         </font>
                         """,
          tags=["General Inquiries"])
-def get_best_developer_year(year: int):
+def best_developer_year(year: int):
     return afdef.best_developer_year(year)
 
 @app.get('/dev_reviews_analysis',
-         description="""<font color="black">
+         description="""<font color="purple">
                     INSTRUCTIONS<br>
                     1. Click on "Try it out".<br>
                     2. Enter the year in the box below.<br>
@@ -87,14 +87,15 @@ def get_best_developer_year(year: int):
                     </font>
                     """,
          tags=["General Queries"])
-def dev_reviews_analysis(year: str = Query(..., 
+def dev_reviews_analysis(year: int = Query(..., 
                                          description="Returns a dictionary with the developer's name", 
                                          example="Trion Worlds, Inc.")):
     return afdef.dev_reviews_analysis(developer)
 
 
+
 @app.get('/game_recommendation',
-         description=""" <font color="black">
+         description=""" <font color="purple">
                     INSTRUCTIONS<br>
                     1. Click on "Try it out".<br>
                     2. Enter the name of a game in box below.<br>

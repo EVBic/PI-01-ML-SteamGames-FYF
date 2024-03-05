@@ -22,8 +22,7 @@ def presentation():
             <title>API Steam Find Your Fun</title>
             <style>
                 body {
-                    background: url("https://app.gemoo.com/share/image-annotation/623411102147424256?codeId=M0BgaB8r7V7ZZ&origin=imageurlgenerator&card=623411100083826688");
-                    background: url("https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg");
+                    background: url(https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg);
                     font-family: Georgia, sans-serif;
                     padding: 20px;
                 }
@@ -86,7 +85,7 @@ def developer(developer_name: str):
         '% Free games': free_games_percentage.values
     })
 
-    return results_df
+    return results_df.to_dict()
 
 def userdata(user_id):
     
