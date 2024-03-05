@@ -87,6 +87,8 @@ def developer(developer_name: str):
 
     return results_df.to_dict()
 
+
+
 def userdata(user_id):
     
     # Filter by the user of interest
@@ -105,10 +107,12 @@ def userdata(user_id):
     percentage_recommendations = (total_recommendations / total_reviews) * 100
     
     return {
+        'user_id': user_id,
         'amount_money': amount_money,
         'percentage_recommendation': round(percentage_recommendations, 2),
         'total_items': count_items.astype(int)
     }
+
 
 def UserForGenre(genre: str) -> dict:
     # Filter the DataFrame for the specific genre
@@ -146,6 +150,7 @@ def UserForGenre(genre: str) -> dict:
         "User with most playtime for Genre {}".format(genre): str(top_user),
         "Playtime": playtime_list
     }
+
 
 def best_developer_year(year: int):
     # Replace non-numeric 'release_year' values with NaN

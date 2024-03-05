@@ -23,18 +23,17 @@ def home():
     return afdef.presentation()
 
 @app.get(path = '/developer', 
-          description = """ <font color="purple">
+          description = """ <font color="red">
                         1. Click on "Try it out".<br>
                         2. Enter the developer's name in the box below.<br>
                         3. Scroll to "Resposes" to see the number of items and percentage of Free content per year from that developer.
                         </font>
                         """,
          tags=["General Inquiries"])
-
-def developer(developer: str = Query(..., 
+def developer(developer_name: str = Query(..., 
                             description="Developer", 
                             example='Laush Dmitriy Sergeevich')):
-    return afdef.developer(developer)
+    return afdef.developer(developer_name)
 
 
 @app.get(path = '/userdata',
@@ -46,15 +45,13 @@ def developer(developer: str = Query(...,
                         </font>
                         """,
          tags=["General Inquiries"])
-
 def userdata(user_id: str = Query(..., 
                                 description="user_id", 
                                 example="js41637")):
-        
-    return afdef.userdata(user_id)
+     return afdef.userdata(user_id)
     
 
-@app.get("/UserForGenre/{genre}", 
+@app.get('/UserForGenre', response_class=JSONResponse,
          description = """ <font color="purple">
                         1. Click on "Try it out".<br>
                         2. Enter the genre in the box below.<br>
@@ -62,7 +59,9 @@ def userdata(user_id: str = Query(...,
                         </font>
                         """,
          tags=["General Inquiries"])
-def UserForGenre(genre: str):
+def UserForGenre(genre: str = Query(...,
+                            description="Game´s genre", 
+                            example='Indie')):
     return afdef.UserForGenre(genre)
 
 
