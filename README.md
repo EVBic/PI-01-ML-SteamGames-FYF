@@ -2,23 +2,14 @@
 # <h1 align=center>  Find-Your-Fun <h1>
 ## <h4 align=center> **PROJECT Nº1**</h4>
 ### <h2 align=center> Machine Larning Steam Games <h2>
-<p align="center"> img 
-![Pandas](https://img.shields.io/badge/-Pandas-333333?style=flat&logo=pandas)>
-![Numpy](https://img.shields.io/badge/-Numpy-333333?style=flat&logo=numpy)
-![Matplotlib](https://img.shields.io/badge/-Matplotlib-333333?style=flat&logo=matplotlib)
-![Seaborn](https://img.shields.io/badge/-Seaborn-333333?style=flat&logo=seaborn)
-![Scikitlearn](https://img.shields.io/badge/-Scikitlearn-333333?style=flat&logo=scikitlearn)
-![FastAPI](https://img.shields.io/badge/-FastAPI-333333?style=flat&logo=fastapi)
-![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
-![Render](https://img.shields.io/badge/-Render-333333?style=flat&logo=render)
-</p>
+
 
 <h2 align=center> Game Recommendation System</h2>
 <h2 align=center>🎮 **Machine Learning Operations (MLOps)** 🎮</h2>
 <h3 align=center> Henry's Labs</h3>
 <h2 align=center> By Maria Eva Bichi</h2>
 
-!(Find Your Fun Image) MLInt\Datasets\Images\FYF_Main.jpeg
+![Steam_Games](https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Main.jpeg)
 
 ## Project Overview:  :white_circle:
 
@@ -38,19 +29,18 @@ Sentiment Analysis: Exclusively for the df_reviews dataset, the original reviews
 
 ## Project structure: :white_circle:
 
-project with its file and folder structure.
+Project with its file and folder structure:
 
-![Alt text]()
 
 The main files developed (the content of which will be described in detail and precisely in the following section) are:
 - ETL_Games_ITems.ipynb
 - ETL_Steam_Games.ipynb
 - ETL_Games_Reviews.ipynb
 - EDA.ipynb
-- Functions_UserID.ipynb
-- Functions_ProductId.ipynb
-- main_F.py
-
+- Functions_DEF.ipynb
+- Merge_DF.ipynb
+- api.functions.py
+- main.py
 
 
 ## Data source: :white_circle:
@@ -66,7 +56,8 @@ australian_users_items.json is a dataset that contains information about the gam
 
 output_steam_games.json is a dataset that contains data related to the games themselves, such as titles, developer, prices, technical characteristics, tags, among other data.
 
-The details of each of the variables in the data sets are found in the Card_Index document.
+The details of each of the variables in the data sets are found in the Card_Index document. [Index](https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Card_Index.md)
+
 
 ## <h1 align=center> Steam Game Recommendation API</h1>
 
@@ -76,7 +67,7 @@ The Steam Game Recommendation API provides game recommendations based on user be
 
 The API employs a collaborative filtering algorithm based on similarity calculations between games. Here's the general process:
 
-1. User Input: Users provide a game ID as a parameter in the URL when making a GET request to `/recomendacion_juego/{product_id}`.
+1. User Input: Users provide a game ID as a parameter in the URL when making a GET request to `/game_recommendation/{item_id}`.
 
 2. Reference Game Data Retrieval: The API retrieves data for the reference game using the provided user ID from a CSV file containing information about Steam games.
 
@@ -86,28 +77,30 @@ The API employs a collaborative filtering algorithm based on similarity calculat
 
 5. Game Recommendation: The API identifies similar games to provide recommendations.
 
-## `userdata` Function :white_circle:
-
-In addition to the main recommendation function, the project also includes a function that, given a user ID:
-
-- Returns the amount of money spent.
-- Calculates the percentage of recommended games.
-- Provides the count of items.
-
-## Other Functions
 
 The API includes several other functions:
 
-- `countreviews`: Given two dates, it returns the number of users who submitted reviews between those dates and the percentage of positive (True) recommendations they made.
-- `genre`: Accepts a video game genre as a parameter and ranks it based on the total hours played.
-- `userforgenre`: Given a genre, it lists the top 5 users with the most gameplay hours in that genre, along with their user IDs and profile URLs.
-- `developer`: Takes a developer name and returns the number of items developed by that company and the percentage of free content relative to the total.
-- `sentiment_analysis`: Given a game release year, it provides a list of review records categorized by sentiment (Negative, Neutral, Positive).
-- `recomendacion_juego`: Given a game name, it returns 5 recommended games similar to the input.
+
+- `developer`: This function returns the number of items and the percentage of free content per year according to the developing company.
+
+-  `User_Data`: This function returns the amount of money spent by the user, the percentage of recommendation based on `reviews.recommend`, and the quantity of items.
+  
+- `userforgenre`: Given a genre, returns the user who has played the most hours for the given genre and a list of the accumulation of hours played per year of release.
+  
+- `best_developer_year`:  This function returns the top 3 developers with the MOST recommended games by users for the given year. (reviews.recommend = True and positive comments).
+  ![TopDev](https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_BestDev.jpeg)
+  
+- `dev_reviews_analysis`: This function returns a dictionary where the developer's name is the key, and the value is a list containing the total number of user review records categorized as positive or negative based on sentiment analysis.
+  ![Reviews](https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Reviews.jpeg)
+
+  
+## Other Functions
+
+- `game_recommendation`: Given a game name, it returns 5 recommended games similar to the input.
+  ![sentiment_analysis](https://github.com/EVBic/PI-01-ML-SteamGames-FYF/blob/main/Images/FYF_Sent_An1.jpeg)
 
 ## Support material :white_circle:
 
-**[links de ayuda](https://raw.githubusercontent.com/pjr95/PI_ML_OPS/main/Material%20de%20apoyo.md)**
-**[links de ayuda]
-**[links de ayuda]
+[links de ayuda](https://raw.githubusercontent.com/pjr95/PI_ML_OPS/main/Material%20de%20apoyo.md)
+
 <br/>
