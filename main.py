@@ -62,8 +62,23 @@ def userdata(user_id: str = Query(...,
                         </font>
                         """,
          tags=["General Inquiries"])
-def get_UserForGenre(genre: str):
+def UserForGenre(genre: str):
     return afdef.UserForGenre(genre)
+
+
+@app.get(path = '/best_developer_year/{year}', 
+         description = """ <font color="black">
+                        INSTRUCTIONS<br>
+                        1. Click on "Try it out".<br>
+                        2. Enter the year in the box below.<br>
+                        3. Scroll to "Responses" to see the result of the classification.
+                        </font>
+                        """,
+         tags=["General Inquiries"])
+def best_developer_year(year: int = Query(..., 
+                                              description="Year to filter the information", 
+                                              example=2012)):
+    return afdef.best_developer_year(year)
 
 @app.get('/dev_reviews_analysis',
          description="""<font color="black">
