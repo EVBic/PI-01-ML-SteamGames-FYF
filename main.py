@@ -85,7 +85,7 @@ def best_developer_year(year: int):
                     3. Scroll down to "Responses" to view the number of user review records categorized with sentiment analysis.
                     </font>
                     """,
-         tags=["General Queries"])
+         tags=["General Inquiries"])
 def dev_reviews_analysis(developer: str = Query(..., 
                                          description="Returns a dictionary with the developer's name", 
                                          example="Trion Worlds, Inc.")):
@@ -104,5 +104,5 @@ def dev_reviews_analysis(developer: str = Query(...,
          tags=["Recommendation"])
 def game_recommendation(item_id:int = Query(..., 
                                          description="Game from which the recommendation of other games is made", 
-                                         example="Killing Floor")):
+                                         example="70")):
     return afdef.game_recommendation(item_id)

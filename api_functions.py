@@ -8,6 +8,7 @@ df_playtime = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\C
 df_funct_dev = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_funct_dev.parquet")
 df_expenses_items = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_expenses_items.parquet")
 df_recommendation= pd.read_csv(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\steam_games.csv")
+df_userfg = pd.read_parquet(r"C:.\CleanDatasets\userfg.parquet")
 
 def presentation():
     '''
@@ -60,11 +61,12 @@ def presentation():
             
             <button type="button" class="centered-button" onclick="window.location.href = window.location.href + 'docs'">API Docs</button>
             
-            <p>Visit my profile on <a href="https://www.linkedin.com/in/maría-eva-bichi">LinkedIn</a>&nbsp;<img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-blue?style=flat-square&logo=linkedin"></a></p>
-            <p>The development of this project is hosted on <a href="https://github.com/EVBic">Github</a>&nbsp;<img alt="GitHub" src="https://img.shields.io/badge/GitHub-black?style=flat-square&logo=github"></a></p>
+            <p>Visit my profile on <a href="https://www.linkedin.com/in/maría-eva-bichi">&nbsp;<img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-blue?style=flat-square&logo=linkedin"></a></p>
+            <p>The development of this project is hosted on <a href="https://github.com/EVBic">&nbsp;<img alt="GitHub" src="https://img.shields.io/badge/GitHub-black?style=flat-square&logo=github"></a></p>
         </body>
     </html>
     '''
+
 
 def developer(developer_name: str):
     # Filter games by the specified developer
@@ -78,15 +80,16 @@ def developer(developer_name: str):
                              .groupby('release_year')['item_id']
                              .count() / game_count_by_year * 100).fillna(0).astype(int)
 
-    # Create a DataFrame from the results dictionary
-    results_df = pd.DataFrame({
-        'Year': game_count_by_year.index,
-        'Number of games': game_count_by_year.values,
-        '% Free games': free_games_percentage.values
-    })
+    # Create a list of dictionaries from the results
+    results = []
+    for year, num_games, free_games in zip(game_count_by_year.index, game_count_by_year.values, free_games_percentage.values):
+        results.append({
+            'Year': int(year),
+            'Number of games': int(num_games),
+            '% Free games': int(free_games)
+        })
 
-    return results_df
-
+    return results
 
 
 def userdata(user_id):
@@ -108,21 +111,20 @@ def userdata(user_id):
     
     return {
         'user_id': user_id,
-        'amount_money': amount_money,
-        'percentage_recommendation': round(percentage_recommendations, 2),
-        'total_items': count_items.astype(int)
+        'amount_money': float(amount_money),
+        'percentage_recommendation': round(float(percentage_recommendations), 2),
+        'total_items': int(count_items)
     }
-
 
 def UserForGenre(genre: str) -> dict:
     # Filter the DataFrame for the specific genre
-    genre_df = df_playtime[df_playtime['genres'] == genre]
+    genre_df = df_userfg[df_userfg['genres'] == genre]
     
     # Convert playtime from minutes to hours
-    genre_df['playtime_forever'] = genre_df['playtime_forever'] / 60
+    genre_df['playtime_hours'] = genre_df['playtime_hours'] / 60
     
-    # Group by user_id and sum the playtime_forever
-    user_playtime = genre_df.groupby('user_id')['playtime_forever'].sum()
+    # Group by user_id and sum the playtime_hours
+    user_playtime = genre_df.groupby('user_id')['playtime_hours'].sum()
     
     # Get the user with the most playtime
     top_user = user_playtime.idxmax()
@@ -131,7 +133,7 @@ def UserForGenre(genre: str) -> dict:
     top_user_genre_df = genre_df[genre_df['user_id'] == top_user]
     
     # Group by release_year and sum the playtime_forever
-    playtime_by_year = top_user_genre_df.groupby('release_year')['playtime_forever'].sum()
+    playtime_by_year = top_user_genre_df.groupby('release_year')['playtime_hours'].sum()
     
     # Prepare the playtime list
     playtime_list = []
