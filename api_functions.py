@@ -60,8 +60,8 @@ def presentation():
             
             <button type="button" class="centered-button" onclick="window.location.href = window.location.href + 'docs'">API Docs</button>
             
-            <p>Visit my profile on <a href="https://www.linkedin.com/in/maría-eva-bichi"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-blue?style=flat-square&logo=linkedin"></a></p>
-            <p>The development of this project is hosted on <a href="https://github.com/EVBic"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-black?style=flat-square&logo=github"></a></p>
+            <p>Visit my profile on <a href="https://www.linkedin.com/in/maría-eva-bichi">LinkedIn</a>&nbsp;<img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-blue?style=flat-square&logo=linkedin"></a></p>
+            <p>The development of this project is hosted on <a href="https://github.com/EVBic">Github</a>&nbsp;<img alt="GitHub" src="https://img.shields.io/badge/GitHub-black?style=flat-square&logo=github"></a></p>
         </body>
     </html>
     '''
@@ -85,7 +85,7 @@ def developer(developer_name: str):
         '% Free games': free_games_percentage.values
     })
 
-    return results_df.to_dict()
+    return results_df
 
 
 

@@ -23,7 +23,7 @@ def home():
     return afdef.presentation()
 
 @app.get(path = '/developer', 
-          description = """ <font color="red">
+          description = """ <font color="purple">
                         1. Click on "Try it out".<br>
                         2. Enter the developer's name in the box below.<br>
                         3. Scroll to "Resposes" to see the number of items and percentage of Free content per year from that developer.
@@ -81,12 +81,12 @@ def best_developer_year(year: int):
          description="""<font color="purple">
                     INSTRUCTIONS<br>
                     1. Click on "Try it out".<br>
-                    2. Enter the year in the box below.<br>
+                    2. Enter the dev in the box below.<br>
                     3. Scroll down to "Responses" to view the number of user review records categorized with sentiment analysis.
                     </font>
                     """,
          tags=["General Queries"])
-def dev_reviews_analysis(year: int = Query(..., 
+def dev_reviews_analysis(developer: str = Query(..., 
                                          description="Returns a dictionary with the developer's name", 
                                          example="Trion Worlds, Inc.")):
     return afdef.dev_reviews_analysis(developer)
