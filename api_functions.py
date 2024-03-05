@@ -2,12 +2,13 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
-df_reviews= pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_reviews_l.parquet")
-df_genre_ranking = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_genre_ranking.parquet")
-df_funct_dev = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_funct_dev.parquet")
-df_expenses_items = pd.read_parquet(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\df_expenses_items.parquet")
-df_recommendation= pd.read_csv(r"C:\Users\m_evi\OneDrive\Desktop\MLInt\Datasets\CleanDatasets\steam_games.csv")
+df_reviews= pd.read_parquet(r"C:.\CleanDatasets\df_reviews_l.parquet")
+df_genre_ranking = pd.read_parquet(r"C:.\CleanDatasets\df_genre_ranking.parquet")
+df_playtime = pd.read_parquet(r"C:.\CleanDatasets\df_playtime.parquet")
+df_funct_dev = pd.read_parquet(r"C:.\CleanDatasets\df_funct_dev.parquet")
+df_expenses_items = pd.read_parquet(r"C:.\CleanDatasets\df_expenses_items.parquet")
 df_userfg = pd.read_parquet(r"C:.\CleanDatasets\userfg.parquet")
+df_recommendation= pd.read_csv(r"C:.\CleanDatasets\steam_games.csv")
 
 def presentation():
     '''
