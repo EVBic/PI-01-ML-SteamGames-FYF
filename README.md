@@ -1,7 +1,7 @@
 
 # <h1 align=center>  Find-Your-Fun <h1>
 ## <h4 align=center> **PROJECT Nº1**</h4>
-### <h2 align=center> Machine Larning Steam Games <h2>
+### <h2 align=center> Machine Learning Steam Games <h2>
 
 
 <h2 align=center> Game Recommendation System</h2>
